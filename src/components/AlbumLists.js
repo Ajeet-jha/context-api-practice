@@ -1,15 +1,7 @@
-import React, {
+import {
+    useState,
     useContext
 } from 'react';
-import {
-    map,
-    size,
-    slice
-} from 'lodash';
-
-import { AlbumContext } from '../context/AlbumContext';
-import AlbumList from './AlbumList';
-import SearchBox from './SearchBox';
 
 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -22,6 +14,16 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TablePagination from '@material-ui/core/TablePagination';
 
+import {
+    map,
+    size,
+    slice
+} from 'lodash';
+
+import { AlbumContext } from '../context/AlbumContext';
+import AlbumList from './AlbumList';
+import SearchBox from './SearchBox';
+
 const StyledTableCell = withStyles((theme) => ({
     head: {
         backgroundColor: theme.palette.common.black,
@@ -31,6 +33,7 @@ const StyledTableCell = withStyles((theme) => ({
         fontSize: 14,
     },
 }))(TableCell);
+
 const StyledTableRow = withStyles((theme) => ({
     root: {
         '&:nth-of-type(odd)': {
@@ -38,6 +41,7 @@ const StyledTableRow = withStyles((theme) => ({
         },
     },
 }))(TableRow);
+
 const useStyles = makeStyles({
     table: {
         minWidth: 700,
@@ -51,8 +55,8 @@ const useStyles = makeStyles({
 
 function AlbumLists() {
     const classes = useStyles();
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -63,7 +67,10 @@ function AlbumLists() {
         setPage(0);
     };
 
-    const { albumdata = [], setSearch } = useContext(AlbumContext);
+    const {
+        albumdata = [],
+        setSearch
+    } = useContext(AlbumContext);
 
     return (
         <>
@@ -81,18 +88,22 @@ function AlbumLists() {
                             <StyledTableCell align="center">Title</StyledTableCell>
                         </TableRow>
                     </TableHead>
-
                     <TableBody>
-                        {map(slice(albumdata, page * rowsPerPage, page * rowsPerPage + rowsPerPage), (data) => (
-                            <StyledTableRow key={data.id}>
-                                <AlbumList
-                                    {...data}
-                                />
-                            </StyledTableRow>
-                        ))}
+                        {map(
+                            slice(
+                                albumdata, page * rowsPerPage, page * rowsPerPage + rowsPerPage
+                            ),
+                            (data) => (
+                                <StyledTableRow key={data.id}>
+                                    <AlbumList
+                                        {...data}
+                                    />
+                                </StyledTableRow>
+                            ))}
                     </TableBody>
                 </Table>
             </TableContainer>
+
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
