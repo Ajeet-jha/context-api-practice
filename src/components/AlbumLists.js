@@ -1,29 +1,15 @@
 import React, {
-    useState,
     useContext,
     useEffect
-} from 'react'
+} from 'react';
+import { map } from 'lodash';
+
 import { AlbumContext } from '../context/AlbumContext';
 import AlbumList from './AlbumList';
 import SearchBox from './SearchBox';
 
-import { filter, includes, map, } from 'lodash';
-
 function AlbumLists() {
-    const [search, setSearch] = useState('');
-    const [renderData, setRenderData] = useState();
-    const { albumdata } = useContext(AlbumContext);
-
-    useEffect(() => {
-        setRenderData(albumdata)
-    }, [albumdata])
-
-    useEffect(() => {
-        const updatedRender = filter(albumdata, (data) => {
-            return includes(data.title, search)
-        })
-        setRenderData(updatedRender);
-    }, [search])
+    const { albumdata, setSearch } = useContext(AlbumContext);
 
     return (
         <>
@@ -34,7 +20,7 @@ function AlbumLists() {
             />
 
             <ul>
-                {map(renderData, (data) => (
+                {map(albumdata, (data) => (
 
                     <AlbumList
                         key={data.id}
