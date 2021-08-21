@@ -14,9 +14,9 @@ const StyledTableCell = withStyles((theme) => ({
 export default function AlbumList({ id, title, userId }) {
     return (
         <>
-            <StyledTableCell >{id}</StyledTableCell>
-            <StyledTableCell >{userId}</StyledTableCell>
-            <StyledTableCell >{title}</StyledTableCell>
+            <StyledTableCell align="center">{id}</StyledTableCell>
+            <StyledTableCell align="center">{userId}</StyledTableCell>
+            <StyledTableCell align="center">{title}</StyledTableCell>
         </>
     )
 }

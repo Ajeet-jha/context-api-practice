@@ -42,6 +42,11 @@ const useStyles = makeStyles({
     table: {
         minWidth: 700,
     },
+    wrapper: {
+        width: '78%',
+        overflowX: 'auto',
+        margin: 'auto'
+    }
 });
 
 function AlbumLists() {
@@ -67,13 +72,13 @@ function AlbumLists() {
                     (e) => setSearch(e.target.value)
                 }
             />
-            <TableContainer component={Paper}>
-                <Table className={classes.table} stickyHeader aria-label="sticky table">
+            <TableContainer component={Paper} className={classes.wrapper}>
+                <Table className={classes.table} stickyHeader aria-label="sticky table" >
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell>Id</StyledTableCell>
-                            <StyledTableCell>userId</StyledTableCell>
-                            <StyledTableCell>Title</StyledTableCell>
+                            <StyledTableCell align="center">Id</StyledTableCell>
+                            <StyledTableCell align="center">userId</StyledTableCell>
+                            <StyledTableCell align="center">Title</StyledTableCell>
                         </TableRow>
                     </TableHead>
 
