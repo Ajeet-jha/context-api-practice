@@ -1,9 +1,22 @@
 import React from 'react'
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import TableCell from '@material-ui/core/TableCell';
+const StyledTableCell = withStyles((theme) => ({
+    head: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+    },
+    body: {
+        fontSize: 14,
+    },
+}))(TableCell);
 
-export default function AlbumList({ id, title }) {
+export default function AlbumList({ id, title, userId }) {
     return (
-        <li >
-            {title}
-        </li>
+        <>
+            <StyledTableCell >{id}</StyledTableCell>
+            <StyledTableCell >{userId}</StyledTableCell>
+            <StyledTableCell >{title}</StyledTableCell>
+        </>
     )
 }
