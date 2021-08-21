@@ -1,7 +1,11 @@
 import React, {
     useContext
 } from 'react';
-import { map, size } from 'lodash';
+import {
+    map,
+    size,
+    slice
+} from 'lodash';
 
 import { AlbumContext } from '../context/AlbumContext';
 import AlbumList from './AlbumList';
@@ -74,7 +78,7 @@ function AlbumLists() {
                     </TableHead>
 
                     <TableBody>
-                        {map(albumdata.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage), (data) => (
+                        {map(slice(albumdata, page * rowsPerPage, page * rowsPerPage + rowsPerPage), (data) => (
                             <StyledTableRow key={data.id}>
                                 <AlbumList
                                     {...data}
